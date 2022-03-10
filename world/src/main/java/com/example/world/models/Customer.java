@@ -6,12 +6,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Admin {
-
+public class Customer {
+    
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
@@ -23,17 +22,17 @@ public class Admin {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Auth auth;    
 
-    public Admin() {
+    public Customer() {
     }
 
-    public Admin(String name, String phoneNo, String address, Auth auth) {
+    public Customer(String name, String phoneNo, String address, Auth auth) {
         this.name = name;
         this.phoneNo = phoneNo;
         this.address = address;
         this.auth = auth;
     }
 
-    public Admin(String id, String name, String phoneNo, String address, Auth auth) {
+    public Customer(String id, String name, String phoneNo, String address, Auth auth) {
         this.id = id;
         this.name = name;
         this.phoneNo = phoneNo;
@@ -73,12 +72,9 @@ public class Admin {
         this.address = address;
     }
 
-    public Auth getAuth() {
-        return auth;
+    @Override
+    public String toString() {
+        return "Customer [address=" + address + ", id=" + id + ", name=" + name + ", phoneNo=" + phoneNo + "]";
     }
 
-    public void setAuth(Auth auth) {
-        this.auth = auth;
-    }
 }
-
